@@ -6,7 +6,7 @@ Stackable is a jQuery plugin that automatically stack menu options when it conta
 ## Usage
 Add ```stackable.css``` in the ```<head>```
 ```html
-<style type="text/css" src="stackable.css"></style>
+<link rel="stylesheet" href="stackable.css">
 ```
 
 Navigation bar:
