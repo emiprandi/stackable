@@ -1,5 +1,5 @@
 # stackable.js
-Stackable is a jQuery plugin that automatically stack menu options when it container gets smaller.
+Stackable is a jQuery plugin that automatically stack menu options when its container gets smaller.
 <!--- [Demo page](http://emiprandi.github.io/stackable) available. -->
 
 
