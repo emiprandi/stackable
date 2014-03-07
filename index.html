@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stackable.js</title>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        /* site */
+        html, body { background-color: #F5F5F5; color: #111; }
+        h1, h2, h3 { font-family: 'Nunito', sans-serif; }
+        h1 { float: left; }
+        h1 sup { font-size: 18px; margin-left: 5px; color: #FF4136; }
+        a, a:hover { color: #FF4136; }
+        pre { margin-bottom: 30px; letter-spacing: 1px; line-height: 18px; background-color: #F5F5F5; color: #000; padding: 20px 30px; white-space: pre-wrap; }
+        .nav-container { width: 80%; height: 82px; margin: auto; border: 1px dotted #5534AF; }
+
+        .block { padding: 30px 0; }
+        #header { margin: 30px auto 60px auto; }
+        #usage { background-color: #5534AF; color: #FFF; }
+        #usage h2 { color: #FFF; }
+        #usage pre { border-top: 3px solid #8466D7; }
+        #features { background-color: #FFDF36; }
+        #label_feature, #style_feature { background-color: #FFE768; }
+        #nested_feature { background-color: #FFED90; }
+        #label_feature pre, #style_feature pre { border-top: 3px solid #FFDF36; }
+        #nested_feature pre { border-top: 3px solid #FFE768; }
+        #download { text-align: center; background-color: #FF4136; color: #FFF; }
+        #download h2 { color: #FFF; }
+        #credits { text-align: center; padding: 120px 0 80px 0; }
+        #credits p { color: #999; font-size: 0.8rem; }
+        
+        /* stackable required styles */
+        ul.nav>li{ float: left; position: relative; }
+        ul.nav>li>a{ display: block; position: relative; }
+        ul.nav>li>ul{ display: none; position: absolute; right: 0; top: 100%; z-index: 99; }
+        ul.nav>li>ul>li>a{ white-space: nowrap; }
+        ul.nav>li.open>ul{ display: block; }
+
+        /* nav styling */
+        ul.nav{ list-style: none; margin: 13px 0 0 0; padding: 0; float: right; }
+        ul.nav>li>a{ font-family: 'Nunito', sans-serif; color: #000; font-size: 18px; line-height: 20px; padding: 10px 20px; text-decoration: none; }
+        ul.nav>li>a:hover{ background-color: #EEE; }
+        ul.nav>li.stacker>a{ background-color: #FF7068; color: #FFF; padding: 10px 15px; -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px; }
+        ul.nav>li.stacker>a:hover{ background-color: #FF4136; }
+        ul.nav>li.stacker.open>a{ -webkit-border-bottom-right-radius: 0; -webkit-border-bottom-left-radius: 0; -moz-border-radius-bottomright: 0; -moz-border-radius-bottomleft: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 0; }
+
+        ul.nav>li>ul{ background-color: #FF7068; list-style: none; margin: 0; min-width: 160px; padding: 0; }
+        ul.nav>li>ul>li>a{ color: #FFF; display: block; padding: 10px 20px; text-decoration: none; }
+        ul.nav>li>ul>li>a:hover{ background-color: #FF4136; }
+
+        ul.nav>li.open>ul>li>ul{ background-color: #F9F9F9; list-style: none; margin: 0; padding: 0 0 5px 0; }
+        ul.nav>li.open>ul>li>ul>li>a{ color: #555; display: block; font-size: 14px; padding: 8px 20px 8px 25px; text-decoration: none; white-space: nowrap; }
+        ul.nav>li.open>ul>li>ul>li>a:hover{ background-color: #EEE; }
+    </style>
+</head>
+
+<body>
+    <div id="header" class="block">
+        <div class="row">
+            <div class="small-12 columns">
+                <h1>stackable<sup>js</sup></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <p>&nbsp;</p>
+                <p>Stackable is a jQuery plugin that automatically stack menu options when its container gets smaller. You can try it by resizing this window.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns">
+                <div class="nav-container">
+                    <ul class="nav">
+                        <li><a href="#">Option #1</a></li>
+                        <li><a href="#">Option #2</a></li>
+                        <li><a href="#">Option #3</a></li>
+                        <li class="submenu">
+                            <a href="#">Option #4 +</a>
+                            <ul>
+                                <li><a href="#">Sub A</a></li>
+                                <li><a href="#">Sub B</a></li>
+                                <li><a href="#">Sub C</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Option #5</a></li>
+                        <li><a href="#">Option #6</a></li>
+                        <li><a href="#">Option #7</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="usage" class="block">
+        <div class="row">
+            <div class="small-12 columns">
+                <h2>Usage</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <p>Add stackable.css in the &lt;head&gt; section</p>
+            </div>
+            <div class="small-12 medium-8 columns">
+                <pre>&lt;head&gt;
+    ...
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;stackable.css&quot;&gt;
+    ...
+&lt;/head&gt;</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <p>Set up a Navigation bar</p>
+            </div>
+            <div class="small-12 medium-8 columns">
+                <pre>&lt;ul class=&quot;nav&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option #1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option #2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option #3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option #4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option #5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <p>Include jQuery and Stackable right before &lt;/body&gt;</p>
+            </div>
+            <div class="small-12 medium-8 columns">
+                <pre>&lt;script src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;stackable.min.js&quot;&gt;&lt;/script&gt;</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <p>Plugin call</p>
+            </div>
+            <div class="small-12 medium-8 columns">
+                <pre>&lt;script&gt;
+    $('.nav').stackable();
+&lt;/script&gt;</pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="features" class="block">
+        <div class="row">
+            <div class="small-12 columns">
+                <h2>Features</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="label_feature" class="block">
+        <div class="row">
+            <div class="small-12 columns">
+                <h3>Stacker label</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <p>By default the stacker label will be <b>+</b>, but you can change it</p>
+            </div>
+            <div class="small-12 medium-8 columns">
+                <pre>$('.nav').stackable({
+    stackerLabel: 'More options'
+});</pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="nested_feature" class="block">
+        <div class="row">
+            <div class="small-12 columns">
+                <h3>Nested items</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <p>Use the "submenu" class to nest another list</p>
+            </div>
+            <div class="small-12 medium-8 columns">
+                <pre>&lt;ul class=&quot;nav&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option #1&lt;/a&gt;&lt;/li&gt;
+    &lt;li class=&quot;<b>submenu</b>&quot;&gt;
+        &lt;a href=&quot;#&quot;&gt;Option #2 +&lt;/a&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option A&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option B&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option C&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#&quot;&gt;Option #3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="style_feature" class="block">
+        <div class="row">
+            <div class="small-12 columns">
+                <h3>Styling</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <p>Highly customizable css</p>
+            </div>
+            <div class="small-12 medium-8 columns">
+                <pre>...
+.stacker {}
+.stacker.open {}
+.submenu { }
+.submenu.open {}
+...</pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="download" class="block">
+        <div class="row">
+            <div class="small-12 columns">
+                <h2>Download</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns"><p>&nbsp;</p></div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <a href="https://github.com/emiprandi/stackable/raw/master/stackable.min.js" class="button alert">stackable.min.js</a>
+            </div>
+            <div class="small-12 medium-4 columns">
+                <a href="https://github.com/emiprandi/stackable/archive/master.zip" class="button alert">Source</a>
+            </div>
+            <div class="small-12 medium-4 columns">
+                <a href="https://github.com/emiprandi/stackable" class="button alert">View on Github</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="credits" class="block">
+        <div class="row">
+            <div class="small-12 columns">
+                <p>Built by Emiliano Prandi<br><a href="https://github.com/emiprandi">Github</a> · <a href="https://twitter.com/sucufruli">Twitter</a></p>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-text="Stackable.js · A plugin that automatically stack menu options." data-via="sucufruli" data-size="large">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+        </div>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/stackable.min.js"></script>
+    <script>
+        $('.nav').stackable();
+    </script>
+</body>
+</html>
