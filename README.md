@@ -6,6 +6,9 @@ Please visit the [demo page](http://emiprandi.github.io/stackable).
 
 ## Changelog
 
+### v0.0.2
+* Replacement tag for stacked submenu anchor
+
 ### v0.0.1
 * Initial version
 
