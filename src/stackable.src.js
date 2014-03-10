@@ -32,8 +32,7 @@
                 html: $(this)[0].outerHTML,
                 width: $(this).outerWidth(true),
                 submenu: false,
-                visible: true,
-                replacedAnchorTag: false
+                visible: true
             };
             if ($(this).hasClass('submenu')) to[t].submenu = true;
             tw += to[t].width;
