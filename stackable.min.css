@@ -1,0 +1,7 @@
+/* stackable required styles */
+ul.nav>li{ float: left; position: relative; }
+ul.nav>li>a{ display: block; position: relative; }
+ul.nav>li>ul{ display: none; position: absolute; right: 0; top: 100%; z-index: 99; }
+ul.nav>li.sa-open>ul{ display: block; }
+ul.nav>li>ul>li>a{ white-space: nowrap; }
+ul.nav>li.sa-stacker>ul>li.submenu>span.sa-anchor-replacement{ display: block; white-space: nowrap; }
