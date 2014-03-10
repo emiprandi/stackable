@@ -13,7 +13,7 @@
     var STACKable = function (e, o) {
         this.stacker = {
             e: null,
-            html: '<li class="stacker"><a href="#">' + o.stackerLabel + '</a><ul></ul></li>',
+            html: '<li class="sa-stacker"><a href="#">' + o.stackerLabel + '</a><ul></ul></li>',
             width: 0
         };
         this.e = e;
@@ -32,7 +32,8 @@
                 html: $(this)[0].outerHTML,
                 width: $(this).outerWidth(true),
                 submenu: false,
-                visible: true
+                visible: true,
+                replacedAnchorTag: false
             };
             if ($(this).hasClass('submenu')) to[t].submenu = true;
             tw += to[t].width;
@@ -87,7 +88,11 @@
             this.stacker.e = $(this.stacker.html).appendTo(this.e);
             for (tc = 0; tc < this.navItems.length; tc++) {
                 if (!this.navItems.items[tc].visible) {
-                    $(this.navItems.items[tc].html).appendTo(this.stacker.e.children('ul'));
+                    var th = this.navItems.items[tc].html;
+                    if (th.indexOf('<ul>') !== -1) {
+                        th = th.replace(/<a[^>]*>/, '<span class="sa-anchor-replacement">').replace(/<\/a>/, '</span>');
+                    }
+                    $(th).appendTo(this.stacker.e.children('ul'));
                     this.navItems.items[tc].visible = false;
                 }
             }
@@ -96,20 +101,20 @@
 
     STACKable.prototype.setActions = function () {
         var te = this.e,
-            menuSelector = 'li.submenu, li.stacker',
-            menuAnchorSelector = 'li.submenu>a, li.stacker>a';
+            menuSelector = 'li.submenu, li.sa-stacker',
+            menuAnchorSelector = 'li.submenu>a, li.sa-stacker>a';
 
         $(te).on('click.stackable.nav', menuAnchorSelector, function () {
-            if ($(this).parent().hasClass('open')) {
-                $(te.selector).children(menuSelector).removeClass('open');
+            if ($(this).parent().hasClass('sa-open')) {
+                $(te.selector).children(menuSelector).removeClass('sa-open');
             } else {
-                $(te.selector).children(menuSelector).removeClass('open');
-                $(this).parent().toggleClass('open');
+                $(te.selector).children(menuSelector).removeClass('sa-open');
+                $(this).parent().toggleClass('sa-open');
             }
             return false;
         });
         $(document).on('click.stackable.closure', function () {
-            $(te.selector).children(menuSelector).removeClass('open');
+            $(te.selector).children(menuSelector).removeClass('sa-open');
         });
     };
 
